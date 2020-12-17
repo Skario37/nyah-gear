@@ -18,7 +18,7 @@ html, body {
 }
 
 .icon {
-  background-image: url(/img/slot.png);
+  background-image: url(img/slot.png);
   background-position: center;
   background-repeat: no-repeat;
   width: 90px;
@@ -40,7 +40,7 @@ html, body {
   bottom: 10px;
   left: 10px;
   width: 52vw;
-  background-image: url(/img/none.png);
+  background-image: url(img/none.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -70,7 +70,7 @@ html, body {
   top: 5px;
   width: 35px;
   height: 35px;
-  background-image: url(/img/none.png);
+  background-image: url(img/none.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 35px;
@@ -92,7 +92,7 @@ html, body {
 }
 
 #tClass .icon_class {
-  background-image: url(/img/class_slot.png);
+  background-image: url(img/class_slot.png);
   background-position: center;
   background-repeat: no-repeat;
   width: 120px;
@@ -133,7 +133,7 @@ html, body {
   top: -60px;
   width: 50px;
   height: 50px;
-  background-image: url(/img/aion.png);
+  background-image: url(img/aion.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 35px;
