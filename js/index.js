@@ -1,13 +1,16 @@
 window.onload = function() {
+  window.currentLevel = "65";
   window.classAttr = {};
   window.classInfo = {};
   window.currentClass = "none";
   window.currentRace = "PC_ALL";
 
   window.gear_categories = []
-  window.gear_equipment_types = ["mace", "dagger", "sword", "polearm", "greatsword", "bow", "spellbook", "orb", "gun", "cannon", "keyblade", "harp"];
+  window.gear_weapon_types = ["mace", "dagger", "sword", "polearm", "greatsword", "bow", "spellbook", "orb", "gun", "cannon", "keyblade", "harp"];
+  window.gear_armor_types = ["ROBE", "LEATHER", "PLATE", "CHAIN"];
   window.gear_armor_type = "";
   window.gear_file = "";
+  window.gear_restrict = "ALL"
 
 }
 
@@ -24,6 +27,8 @@ handleLevel = async (e) => {
   if(e.value > 65) e.value = 65;
   else if(e.value < 9) e.value = 9;
 
+  window.currentLevel = e.value;
+
   modifyStats(await getClassAttributes());
   showClassInfo();
 }
@@ -37,45 +42,69 @@ handleClass = async (e) => {
   
   switch (e) {
     case "gladiator":
-      window.gear_equipment_types = ["mace", "dagger", "sword", "polearm", "greatsword", "bow", "shield"];
+      window.gear_weapon_types = ["mace", "dagger", "sword", "polearm", "greatsword", "bow", "shield"];
+      window.gear_armor_types = ["ROBE", "LEATHER", "PLATE", "CHAIN"];
+      window.gear_restrict = 1;
       break;
     case "templar":
-      window.gear_equipment_types = ["mace", "sword", "greatsword", "shield"];
-      break;
-    case "ranger":
-      window.gear_equipment_types = ["dagger", "sword", "bow"];
+      window.gear_weapon_types = ["mace", "sword", "greatsword", "shield"];
+      window.gear_armor_types = ["ROBE", "LEATHER", "PLATE", "CHAIN"];
+      window.gear_restrict = 2;
       break;
     case "assassin":
-      window.gear_equipment_types = ["dagger", "sword", "bow"];
+    window.gear_weapon_types = ["dagger", "sword", "bow"];
+    window.gear_armor_types = ["ROBE", "LEATHER"];
+    window.gear_restrict = 4;
       break;
-    case "spiritmaster":
-      window.gear_equipment_types = ["spellbook", "orb"];
+    case "ranger":
+      window.gear_weapon_types = ["dagger", "sword", "bow"];
+      window.gear_armor_types = ["ROBE", "LEATHER"];
+      window.gear_restrict = 5;
       break;
     case "sorcerer":
-      window.gear_equipment_types = ["spellbook", "orb"];
+    window.gear_weapon_types = ["spellbook", "orb"];
+    window.gear_armor_types = ["ROBE"];
+    window.gear_restrict = 7;
+      break;
+    case "spiritmaster":
+      window.gear_weapon_types = ["spellbook", "orb"];
+      window.gear_armor_types = ["ROBE"];
+      window.gear_restrict = 8;
       break;
     case "cleric":
-      window.gear_equipment_types = ["mace", "staff", "shield"];
+      window.gear_weapon_types = ["mace", "staff", "shield"];
+      window.gear_armor_types = ["ROBE", "LEATHER", "CHAIN"];
+      window.gear_restrict = 10;
       break;
     case "chanter":
-      window.gear_equipment_types = ["mace", "staff", "shield"];
+      window.gear_weapon_types = ["mace", "staff", "shield"];
+      window.gear_armor_types = ["ROBE", "LEATHER", "CHAIN"];
+      window.gear_restrict = 11;
       break;
     case "gunslinger":
-      window.gear_equipment_types = ["gun", "cannon"];
+      window.gear_weapon_types = ["gun", "cannon"];
+      window.gear_armor_types = ["ROBE", "LEATHER", "CHAIN"];
+      window.gear_restrict = 14;
       break;
     case "aethertech":
-      window.gear_equipment_types = ["gun", "keyblade"];
+      window.gear_weapon_types = ["gun", "keyblade"];
+      window.gear_armor_types = ["ROBE", "LEATHER", "CHAIN"];
+      window.gear_restrict = 15;
       break;
     case "songweaver":
-      window.gear_equipment_types = ["harp"];
+      window.gear_weapon_types = ["harp"];
+      window.gear_armor_types = ["ROBE"];
+      window.gear_restrict = 16;
       break;
     case "none":
     default:
-      window.gear_equipment_types = ["mace", "staff", "dagger", "sword", "polearm", "greatsword", "bow", "spellbook", "orb", "gun", "cannon", "keyblade", "harp", "shield"];
+      window.gear_weapon_types = ["mace", "staff", "dagger", "sword", "polearm", "greatsword", "bow", "spellbook", "orb", "gun", "cannon", "keyblade", "harp", "shield"];
+      window.gear_restrict = "ALL";
       break;
   }
 
   modifyBackgroundClass();
+  showGearTypeFilter();
   showGearList(await getGearList());
   modifyStats(await getClassAttributes());
   showClassInfo();
@@ -139,7 +168,7 @@ function showClassInfo() {
   classInfoWrapper = document.createElement('div');
   classInfoWrapper.setAttribute("id", "classInfoWrapper");
   classInfoNode.appendChild(classInfoWrapper);
-
+ 
   var info = window.classInfo;
 
   for (var prop in info) {
@@ -239,7 +268,7 @@ handleGear = async (e) => {
     default:
       break;
   }
-
+  showGearTypeFilter();
   showGearList(await getGearList())
 }
 
@@ -262,6 +291,58 @@ handleLevelFilter = async (e) => {
   showGearList(await getGearList())
 }
 
+handleGearTypeFilter = async (e) => {
+  showGearList(await getGearList())
+}
+
+function showGearTypeFilter() {
+  var wrapper = document.getElementById("gear-types-filter-wrapper")
+  var select = document.getElementById("gear-types-filter")
+  if (select) select.remove()
+  select = document.createElement('select')
+  select.setAttribute('id', 'gear-types-filter')
+  select.classList.add('rounded') 
+  select.setAttribute('name', 'gear_types')
+  select.addEventListener('change', handleGearTypeFilter)
+  wrapper.appendChild(select)
+
+  var default_option = document.createElement("option")
+  default_option.setAttribute("value", "ALL")
+  default_option.innerText = "All Types"
+  select.appendChild(default_option)
+
+  if (window.gear_file === "weapons") {
+    window.gear_weapon_types.forEach(weapon => {
+      var option = document.createElement('option')
+      option.setAttribute("value", weapon.toUpperCase())
+      option.innerText = weapon.charAt(0).toUpperCase() + weapon.slice(1)
+      select.appendChild(option)
+    })
+  } else if (window.gear_file === "jacket" || window.gear_file === "pants" || window.gear_file === "shoulders" || window.gear_file === "gloves" || window.gear_file === "shoes" || window.gear_categories[0] === "HELMET") {
+    window.gear_armor_types.forEach(armor => {
+      var option = document.createElement('option')
+      option.setAttribute("value", armor)
+      switch(armor) {
+        case 'ROBE':
+          option.innerText = "Cloth";
+          break;
+        case 'CHAIN':
+          option.innerText = "Chain";
+          break;
+        case 'PLATE':
+          option.innerText = "Plate";
+          break;
+        case 'LEATHER':
+          option.innerText = "Leather";
+          break;
+        default:
+          break;
+      }
+      select.appendChild(option)
+    })
+  }
+}
+
 async function getGearList() {
   if (window.gear_file === "") return;
   // Prepare quality
@@ -282,11 +363,14 @@ async function getGearList() {
   // Prepare name
   var name = document.getElementById("search-filter")
 
+  // Prepar gear type
+  var gear_type = document.getElementById("gear-types-filter")
+
   // Prepare gear
   var gear = [];
   if (window.gear_file === "weapons") {
-    for (var i = 0; i < window.gear_equipment_types.length; i++) {
-      gear = [...gear, ...await fetchByName(window.gear_equipment_types[i], "item_template")]
+    for (var i = 0; i < window.gear_weapon_types.length; i++) {
+      gear = [...gear, ...await fetchByName(window.gear_weapon_types[i], "item_template")]
     }
   } else {
     gear = [...gear, ...await fetchByName(gear_file, "item_template")]
@@ -315,6 +399,23 @@ async function getGearList() {
   if (name.value.length > 0) {
     console.log(name.value)
     gear = gear.filter(gearNode => gearNode.getAttribute('name').toLowerCase().includes(name.value.toLowerCase()))
+  }
+
+  // Filter gear type
+  if (gear_type.value != "ALL") {
+    if (window.gear_file === "weapons") {
+      gear = gear.filter(gearNode => gearNode.getAttribute('category') === gear_type.value)
+    } else if (window.gear_file === "jacket" || window.gear_file === "pants" || window.gear_file === "shoulders" || window.gear_file === "gloves" || window.gear_file === "shoes" || window.gear_categories[0] === "HELMET") {
+      gear = gear.filter(gearNode => gearNode.getAttribute('armor_type') === gear_type.value || gearNode.getAttribute('armor_type') === "NO_ARMOR")
+    }
+  }
+
+  // Filter gear restrict
+  if (window.gear_restrict != "ALL") {
+    gear = gear.filter(gearNode => {
+      var restrict = gearNode.getAttribute('restrict').split(',')
+      return restrict[window.gear_restrict] != 0 && restrict[window.gear_restrict] <= window.currentLevel
+    })
   }
 
   return gear;
@@ -363,6 +464,9 @@ function sortGearList(gearList) {
       break;
   }
 
+  // Limit to display
+  gearList = gearList.slice(0, 200);
+
   return gearList
 }
 
@@ -381,6 +485,7 @@ function showGearList(gearL) {
   tbody.setAttribute('id', 'gearList')
   tbody.classList.add("d-block") 
   wrapper.appendChild(tbody)
+  
 
   gearList.forEach(gear => {
     let tr = document.createElement('tr')

@@ -171,12 +171,12 @@ html, body {
 /* CLASSINFO */
 
 #classInfo {
+  top: calc(-40vh);
   background-color: rgba(51, 55, 63, 0.5);
-  position: fixed;
-  bottom: 10px;
+  position: relative;
   height: 50vh;
   width: calc(52vw - 228px);
-  left: 124px;
+  left: 104px;
   border: 2px solid #ccc;
   overflow-y: scroll;
 }
@@ -242,15 +242,19 @@ html, body {
   justify-content: center;
 }
 
-#search-filter-wrapper > *, #level-filter-wrapper > *, #quality-filter-wrapper > *, #stats-sort-wrapper > * {
+#search-filter-wrapper > *, #level-filter-wrapper > *, #quality-filter-wrapper > *, #stats-sort-wrapper > *, #gear-types-filter-wrapper > * {
   height: 25px;
   margin: 2px 5px;
   font-weight: bold;
 }
 
-#stats-sort > * {
+#stats-sort > *, #gear-types-filter > * {
   font-weight: bold;
   background-color: #ccc;
+}
+
+#stats-sort > option:hover, #gear-types-filter > option:hover {
+  cursor: pointer;
 }
 
 /* COLORS */

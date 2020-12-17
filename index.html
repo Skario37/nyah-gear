@@ -130,6 +130,11 @@
       <input class="rounded" type="search" id="search-filter" name="search-gear" aria-label="" onchange="handleSearch()">
     </div>
     <div id="quality-filter-wrapper">
+      <div id="gear-types-filter-wrapper">
+        <select class="rounded" name="gear_types" id="gear-types-filter" onchange="handleGearTypeFilter(this)">
+          <option value="ALL">All Types</option>
+        </select>
+      </div>
       <div class="form-check">
         <input type="checkbox" class="form-check-input" id="filter-epic-quality" onchange="handleQualityFilter()" checked>
         <label class="form-check-label EPIC" for="filter-epic-quality">Superior</label>
@@ -152,9 +157,9 @@
       <p>< level <</p>
       <input class="rounded" type="number" id="levelmax-filter" min="1" max="65" step="1" value="65" onchange="handleLevelFilter(this)">
     </div>
-      <div id="stats-sort-wrapper">
-        
-      </div>
+    <div id="stats-sort-wrapper">
+      
+    </div>
     <table id="gearWrapper" class="container">
       <thead class="d-block">
         <tr class="d-flex justify-content-between">
