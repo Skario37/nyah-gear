@@ -1,0 +1,280 @@
+html, body {
+  height: 100%;
+  background-color: grey;
+}
+
+.hide {
+ display: none; 
+}
+
+.remove-item {
+  position: relative;
+  top: -60px;
+  left: 75px;
+}
+
+.remove-item img {
+  width: 20px;
+}
+
+.icon {
+  background-image: url(/img/slot.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 90px;
+  height: 90px;
+}
+.icon:hover {
+  opacity: .5;
+  cursor: pointer;
+}
+.icon img {
+  position: relative;
+  left: 25px;
+  top: 25px;
+}
+
+#bookmark {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  width: 52vw;
+  background-image: url(/img/none.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.wrapper > div {
+  width: 90px;
+  height: 90px;
+}
+
+#gearinfo {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  right: 10px;
+  width: 45vw;
+}
+
+#tClass {
+  position: relative;
+  left: calc(50% - 60px);
+}
+
+#tClass .icon_class #dropdownClass {
+  position: relative;
+  left: 65px;
+  top: 5px;
+  width: 35px;
+  height: 35px;
+  background-image: url(/img/none.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 35px;
+}
+
+#tClass .dropdown-item {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+#tClass .dropdown-item:hover {
+  background-color: gainsboro;
+  cursor: pointer;
+}
+
+#tClass .icon_class img {
+  width: 35px;
+}
+
+#tClass .icon_class {
+  background-image: url(/img/class_slot.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 120px;
+  height: 85px;
+}
+
+#tClass .icon_class #dropdownClass:hover {
+  filter: invert(100%);
+  cursor: pointer;
+}
+
+#tClass .icon_class input {
+  z-index: 1;
+  position: relative;
+  left: 10px;
+  top: 37px;
+  width: 45px;
+}
+
+#tClass .icon_class img {
+  float: left;
+  left: 20px;
+  top: 35px;
+}
+
+#tClass .icon_class p {
+  margin: 10px 0 0 50px;
+}
+
+#tRace {
+  position: relative;
+  top: 0;
+}
+
+#tRace #dropdownRace {
+  position: relative;
+  left: 130px;
+  top: -60px;
+  width: 50px;
+  height: 50px;
+  background-image: url(/img/aion.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 35px;
+  border: 1px solid cadetblue;
+  background-color: ghostwhite;
+}
+
+#tRace .dropdown-item {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+#tClass .dropdown-item:hover {
+  background-color: gainsboro;
+  cursor: pointer;
+}
+
+#tRace img {
+  float: left;
+  left: 20px;
+  top: 35px;
+  width: 35px;
+}
+
+#tRace #dropdownRace:hover {
+  cursor: pointer;
+  filter: grayscale(100%);
+}
+
+#tClass p {
+  margin: 10px 0 0 50px;
+}
+
+/* CLASSINFO */
+
+#classInfo {
+  background-color: rgba(51, 55, 63, 0.5);
+  position: fixed;
+  bottom: 10px;
+  height: 50vh;
+  width: calc(52vw - 228px);
+  left: 124px;
+  border: 2px solid #ccc;
+  overflow-y: scroll;
+}
+
+#classInfo #classInfoWrapper p {
+  color: black;
+  font-weight: bold;
+  margin: 5px 10px;
+}
+
+
+/* GEARLIST */
+
+#gearWrapper {
+  background-color: #1c2027;
+  position: relative;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  height: calc(100vh - 110px);
+  border: 2px solid #ccc;
+  font-weight: bold;
+  color: #ccc
+}
+
+#gearWrapper thead {
+  padding: 5px 10px;
+}
+
+#gearList {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  height: calc(100% - 40px);
+}
+
+#gearList tr {
+  padding: 10px 20px;
+}
+
+#gearList tr:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+#gearList tr td:nth-child(2) {
+  width: 100%;
+  margin: 0 30px;
+}
+
+/* FILTER & SORT GEAR */
+
+#search-filter-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+#search-filter-wrapper #search-filter {
+  width: 75%;
+}
+
+#level-filter-wrapper, #quality-filter-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+#search-filter-wrapper > *, #level-filter-wrapper > *, #quality-filter-wrapper > *, #stats-sort-wrapper > * {
+  height: 25px;
+  margin: 2px 5px;
+  font-weight: bold;
+}
+
+#stats-sort > * {
+  font-weight: bold;
+  background-color: #ccc;
+}
+
+/* COLORS */
+.MYTHIC {
+  color: #bc79ff;
+}
+
+.LEGEND {
+  color: #ff8033;
+}
+
+.UNIQUE {
+  color:#ffbf00;
+}
+
+.EPIC {
+  color: #4ccfff;
+}
+
+.RARE {
+  color: green;
+}
+
+.COMMON {
+  color: aliceblue;
+}
+/* END OF COLORS */

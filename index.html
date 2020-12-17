@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Nyah Gear</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+  <!-- Personnal -->
+  <link href="css/index.css" rel="stylesheet">
+  <script src="js/index.js"></script>
+</head>
+
+<!-- Jacket , Gloves , Shoulders , Pants , Shoes , Shield , Helmet , Sword , Mace , Dagger , Orb , Spellbook , Greatsword , Polearm , Staff , Bow , Gun , Cannon , Harp , Keyblade , Earrings , Necklace , Rings , Belt -->
+
+<body>
+  <div id="bookmark" class="container justify-content-center">
+    <div id="tClass">
+      <div class="icon_class">
+        <div>
+          <input class="rounded" type="number" id="level" min="9" max="65" step="1" value="65" onchange="handleLevel(this)">
+        </div>
+        <div class="dropdown"> 
+          <button class="rounded-circle btn" type="button" id="dropdownClass" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+          <div class="dropdown-menu" aria-labelledby="dropdownClass">
+            <div class="dropdown-item" onclick="handleClass('gladiator')"><img src="img/icon-class_gladiator.png" alt=''><p>Gladiator</p></div>
+            <div class="dropdown-item" onclick="handleClass('templar')"><img src="img/icon-class_templar.png" alt=''><p>Templar</p></div>
+            <div class="dropdown-item" onclick="handleClass('ranger')"><img src="img/icon-class_ranger.png" alt=''><p>Ranger</p></div>
+            <div class="dropdown-item" onclick="handleClass('assassin')"><img src="img/icon-class_assassin.png" alt=''><p>Assassin</p></div>
+            <div class="dropdown-item" onclick="handleClass('spiritmaster')"><img src="img/icon-class_spiritmaster.png" alt=''><p>Spiritmaster</p></div>
+            <div class="dropdown-item" onclick="handleClass('sorcerer')"><img src="img/icon-class_sorcerer.png" alt=''><p>Sorcerer</p></div>
+            <div class="dropdown-item" onclick="handleClass('cleric')"><img src="img/icon-class_cleric.png" alt=''><p>Cleric</p></div>
+            <div class="dropdown-item" onclick="handleClass('chanter')"><img src="img/icon-class_chanter.png" alt=''><p>Chanter</p></div>
+            <div class="dropdown-item" onclick="handleClass('gunslinger')"><img src="img/icon-class_gunslinger.png" alt=''><p>Gunslinger</p></div>
+            <div class="dropdown-item" onclick="handleClass('aethertech')"><img src="img/icon-class_aethertech.png" alt=''><p>Aethertech</p></div>
+            <div class="dropdown-item" onclick="handleClass('songweaver')"><img src="img/icon-class_songweaver.png" alt=''><p>Songweaver</p></div>
+            <div class="dropdown-item" onclick="handleClass('none')"><img src="img/none.png" alt=''><p>No class</p></div>
+          </div>
+        </div> 
+      </div>
+      <div id="tRace">
+        <div class="dropdown"> 
+          <button class="btn" type="button" id="dropdownRace" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+          <div class="dropdown-menu" aria-labelledby="dropdownRace">
+            <div class="dropdown-item" onclick="handleRace('asmodian')"><img src="img/asmodian.png" alt=''><p>Asmodian</p></div>
+            <div class="dropdown-item" onclick="handleRace('elysian')"><img src="img/elysian.png" alt=''><p>Elysian</p></div>
+            <div class="dropdown-item" onclick="handleRace('aion')"><img src="img/aion.png" alt=''><p>All</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <div class="wrapper">
+        <div id="tRHand">
+          <div class="icon" onclick="handleGear(this)"><img src="img/rhand_slot.png" alt=''></div>
+          <div class="remove-item"><img class="hide" src="img/delete.png" alt=''></div>
+        </div>
+        <div id="tLHand">
+          <div class="icon" onclick="handleGear(this)"><img src="img/lhand_slot.png" alt=''></div>
+          <div class="remove-item"><img class="hide" src="img/delete.png" alt=''></div>
+        </div>
+        <div id="tJacket">
+          <div class="icon" onclick="handleGear(this)"><img src="img/jacket_slot.png" alt=''></div>
+          <div class="remove-item"><img class="hide" src="img/delete.png" alt=''></div>
+        </div>
+        <div id="tPants">
+          <div class="icon" onclick="handleGear(this)"><img src="img/pants_slot.png" alt=''></div>
+          <div class="remove-item"><img class="hide" src="img/delete.png" alt=''></div>
+        </div>
+        <div id="tShoulders">
+          <div class="icon" onclick="handleGear(this)"><img src="img/shoulders_slot.png" alt=''></div>
+          <div class="remove-item"><img class="hide" src="img/delete.png" alt=''></div>
+        </div>
+        <div id="tGloves">
+          <div class="icon" onclick="handleGear(this)"><img src="img/gloves_slot.png" alt=''></div>
+          <div class="remove-item"><img class="hide" src="img/delete.png" alt=''></div>
+        </div>
+        <div id="tShoes">
+          <div class="icon" onclick="handleGear(this)"><img src="img/shoes_slot.png" alt=''></div>
+          <div class="remove-item"><img class="hide" src="img/delete.png" alt=''></div>
+        </div>
+      </div>
+      <div class="wrapper">
+        <div id="tHelmet">
+          <div class="icon" onclick="handleGear(this)"><img src="img/helmet_slot.png" alt=''></div>
+          <div class="remove-item"><img class="hide" src="img/delete.png" alt=''></div>
+        </div>
+        <div id="tNecklace">
+          <div class="icon" onclick="handleGear(this)"><img src="img/necklace_slot.png" alt=''></div>
+          <div class="remove-item"><img class="hide" src="img/delete.png" alt=''></div>
+        </div>
+        <div id="tREarrings">
+          <div class="icon" onclick="handleGear(this)"><img src="img/rearrings_slot.png" alt=''></div>
+          <div class="remove-item"><img class="hide" src="img/delete.png" alt=''></div>
+        </div>
+        <div id="tLEarrings">
+          <div class="icon" onclick="handleGear(this)"><img src="img/learrings_slot.png" alt=''></div>
+          <div class="remove-item"><img class="hide" src="img/delete.png" alt=''></div>
+        </div>
+        <div id="tRRings">
+          <div class="icon" onclick="handleGear(this)"><img src="img/rrings_slot.png" alt=''></div>
+          <div class="remove-item"><img class="hide" src="img/delete.png" alt=''></div>
+        </div>
+        <div id="tLRings">
+          <div class="icon" onclick="handleGear(this)"><img src="img/lrings_slot.png" alt=''></div>
+          <div class="remove-item"><img class="hide" src="img/delete.png" alt=''></div>
+        </div>
+        <div id="tBelt">
+          <div class="icon" onclick="handleGear(this)"><img src="img/belt_slot.png" alt=''></div>
+          <div class="remove-item"><img class="hide" src="img/delete.png" alt=''></div>
+        </div>
+        <div id="tWings">
+          <div class="icon" onclick="handleGear(this)"><img src="img/wings_slot.png" alt=''></div>
+          <div class="remove-item"><img class="hide" src="img/delete.png" alt=''></div>
+        </div>
+      </div>
+    </div>
+    <!-- Auto -->
+    <div id="classInfo" class="rounded"></div>
+  </div>
+  <!-- Auto -->
+  <div id="gearinfo">
+    <div id="search-filter-wrapper">
+      <input class="rounded" type="search" id="search-filter" name="search-gear" aria-label="" onchange="handleSearch()">
+    </div>
+    <div id="quality-filter-wrapper">
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="filter-epic-quality" onchange="handleQualityFilter()" checked>
+        <label class="form-check-label EPIC" for="filter-epic-quality">Superior</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="filter-unique-quality" onchange="handleQualityFilter()" checked>
+        <label class="form-check-label UNIQUE" for="filter-unique-quality">Fabled</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="filter-legend-quality" onchange="handleQualityFilter()" checked>
+        <label class="form-check-label LEGEND" for="filter-legend-quality">Eternal</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="filter-mythic-quality" onchange="handleQualityFilter()" checked>
+        <label class="form-check-label MYTHIC" for="filter-mythic-quality">Mythical</label>
+      </div>
+    </div>
+    <div id="level-filter-wrapper">
+      <input class="rounded" type="number" id="levelmin-filter" min="1" max="65" step="1" value="1" onchange="handleLevelFilter(this)">
+      <p>< level <</p>
+      <input class="rounded" type="number" id="levelmax-filter" min="1" max="65" step="1" value="65" onchange="handleLevelFilter(this)">
+    </div>
+      <div id="stats-sort-wrapper">
+        
+      </div>
+    <table id="gearWrapper" class="container">
+      <thead class="d-block">
+        <tr class="d-flex justify-content-between">
+          <th>Level</th>
+          <th class="text-center">Item Name</th>
+          <th id="stats-sort-wrapper">
+            <select class="rounded" name="stats" id="stats-sort" onchange="handleSort()">
+              <option value="quality">Quality</option>
+              <option value="MAXHP">Max HP</option>
+              <option value="PHYSICAL_ATTACK">Attack</option>
+              <option value="BOOST_MAGICAL_SKILL">Magic Boost</option>
+              <option value="PHYSICAL_CRITICAL">Crit Strike</option>
+              <option value="MAGICAL_CRITICAL">Crit Spell</option>
+              <option value="PHYSICAL_ACCURACY">Accuracy</option>
+              <option value="MAGICAL_ACCURACY">Magical Acc</option>
+              <option value="ATTACK_SPEED">Attack Speed</option>
+              <option value="BOOST_CASTING_TIME">Casting Speed</option>
+              <option value="PVP_ATTACK_RATIO">PVP Attack</option>
+              <option value="PVP_DEFEND_RATIO">PVP Defense</option>
+              <option value="PARRY">Parry</option>
+              <option value="BLOCK">Block</option>
+              <option value="MAGIC_SKILL_BOOST_RESIST">Magic Suppr.</option>
+              <option value="CONCENTRATION">Concentration</option>
+              <option value="HEAL_BOOST">Healing Boost</option>
+              <option value="MAGICAL_RESIST">Magic Resist</option>
+            </select>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="gearList" class="d-block">
+
+      </tbody>
+    </table>
+  </div>
+    <!-- ICON , ENCHANT , MANASTONE -->
+</body>
+</html>
